@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Service
+metadata:
+  name: hellocuda-go
+  namespace: default
+spec:
+  runLatest:
+    configuration:
+      revisionTemplate:
+        spec:
+          container:
+            image: "docker.io/mvinkler/hellocuda-go"
+            resources:
+              limits:
+                nvidia.com/gpu: 1 # requesting 1 GPU
